@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="hW4-4t-3dq">
-                                <rect key="frame" x="20" y="316.5" width="374" height="273"/>
+                                <rect key="frame" x="20" y="413" width="374" height="80.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LululemonLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OPF-eh-yVi">
-                                        <rect key="frame" x="80.5" y="0.0" width="213" height="213.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list.dash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OPF-eh-yVi">
+                                        <rect key="frame" x="176.5" y="3" width="21" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="OPF-eh-yVi" secondAttribute="height" multiplier="1:1" id="THr-dj-aPC"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lululemon Garments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdO-91-ptU">
-                                        <rect key="frame" x="81" y="245.5" width="212" height="27.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Features" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdO-91-ptU">
+                                        <rect key="frame" x="121.5" y="53" width="131" height="27.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LululemonLogo" width="213.33332824707031" height="213.33332824707031"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
