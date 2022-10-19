@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Garments
+
+  Created by Arshdeep on 2022-08-25.
+  
+*/
+
+"List" = "List";
+"Alpha" = "Alpha";
+"Creation Time" = "Creation Time";
+"ADD" = "ADD";
+"Save" = "Save";
+"Garment Name" = "Garment Name:";
+"No Products Available" = "No Products Available";
+"Ok" = "Ok";
+"Garment could not be saved." = "Garment could not be saved.";

@@ -9,28 +9,70 @@ import XCTest
 @testable import Garments
 
 class GarmentsTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var databaseAccess: DatabaseAccess? = nil
+    
+    override func setUp() {
+        super.setUp()
+        
+        CONFIG.SELECTED = .TEST
+        databaseAccess = DatabaseAccess()
+        
+        //For testing multiple test cases, CoreDataStack must not have a single instance.
+        databaseAccess?.coreDataStack = CoreDataStack()
     }
+    
+    override func tearDown() {
+        super.tearDown()
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        databaseAccess = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testCreatesDatabaseAccessObject() {
+        XCTAssertNotNil(databaseAccess)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testSaveProduct() {
+        let expectation = expectation(description: "SaveProduct")
+        
+        databaseAccess?.saveProduct(name: "Test Garment 1") { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 1.0)
     }
+    
+    func testFetchAllProducts() {
+        databaseAccess?.saveProduct(name: "Shorts", completion: nil)
+        databaseAccess?.saveProduct(name: "Hat", completion: nil)
+        databaseAccess?.saveProduct(name: "Top", completion: nil)
 
+        let products = databaseAccess?.fetchAllProducts()?.count
+        
+        XCTAssertEqual(products, 3)
+    }
+    
+    func testSortProductsByName() {//Sort Alphabetically
+        databaseAccess?.saveProduct(name: "Shirt", completion: nil)
+        databaseAccess?.saveProduct(name: "Dress", completion: nil)
+        databaseAccess?.saveProduct(name: "Tunic", completion: nil)
+        
+        let products = databaseAccess?.fetchAllProducts(productSortingKey: SortBy.name)
+
+        XCTAssertEqual(products?.first?.name, "Dress")
+        XCTAssertEqual(products?[1].name, "Shirt")
+        XCTAssertEqual(products?.last?.name, "Tunic")
+    }
+    
+    func testSortProductsByCreationDate() {//Sort Latest Added on Top
+        databaseAccess?.saveProduct(name: "Pajama", completion: nil)
+        databaseAccess?.saveProduct(name: "T-Shirt", completion: nil)
+        databaseAccess?.saveProduct(name: "Cap", completion: nil)
+        
+        let products = databaseAccess?.fetchAllProducts(productSortingKey: SortBy.creationDate)
+
+        XCTAssertEqual(products?.first?.name, "Cap")
+        XCTAssertEqual(products?[1].name, "T-Shirt")
+        XCTAssertEqual(products?.last?.name, "Pajama")
+    }
 }
